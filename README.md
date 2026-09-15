@@ -1,4 +1,5 @@
 # AI News — czytnik wiadomości dla Windows
+**[Logo](https://github.com/zetmar-collab/ai-news-desktop/blob/main/docs/images/ChatGPT%20Image%2015%20wrz%202026%2C%2004_12_04.png)**
 
 **[Pobierz najnowsze wydanie dla Windows](https://github.com/zetmar-collab/ai-news-desktop/releases/latest)**
 
