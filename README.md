@@ -52,7 +52,7 @@ npm.cmd run build
 
 ## Microsoft Store
 
-W katalogu `store-identity.example.json` znajduje się wzór danych wymaganych po zarezerwowaniu nazwy aplikacji w Partner Center. Skopiuj go do nieśledzonego przez Git pliku `store-identity.json`, wklej dokładne `Identity name` i `Publisher` z Partner Center, a następnie uruchom:
+`store-identity.example.json` zawiera dane nadane tej aplikacji przez Partner Center. Możesz utworzyć nieśledzony przez Git plik `store-identity.json`, jeśli w przyszłości otrzymasz nową tożsamość. Następnie uruchom:
 
 ```powershell
 npm.cmd run build:msix

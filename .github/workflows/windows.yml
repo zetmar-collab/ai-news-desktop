@@ -18,7 +18,11 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npm run build:msix
+      - run: npm run test:msix
       - uses: actions/upload-artifact@v4
         with:
           name: AI-News-Windows
-          path: release/AI-News-*-Windows.exe
+          path: |
+            release/AI-News-*-Windows.exe
+            release/AI-News-*-Windows-x64.msix

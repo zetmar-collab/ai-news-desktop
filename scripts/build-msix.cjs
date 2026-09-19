@@ -3,9 +3,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const configPath = path.join(root, 'store-identity.json');
+const localIdentityPath = path.join(root, 'store-identity.json');
+const configPath = fs.existsSync(localIdentityPath)
+  ? localIdentityPath
+  : path.join(root, 'store-identity.example.json');
 if (!fs.existsSync(configPath)) {
-  console.error('Brakuje store-identity.json. Skopiuj store-identity.example.json i wklej wartości z Partner Center.');
+  console.error('Brakuje konfiguracji tożsamości Store.');
   process.exit(1);
 }
 
