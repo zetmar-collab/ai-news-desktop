@@ -6,8 +6,11 @@ const root = path.resolve(__dirname, '..');
 const releaseDir = path.join(root, 'release');
 const msix = fs.readdirSync(releaseDir).find(file => file.endsWith('.msix'));
 if (!msix) throw new Error('Nie znaleziono pakietu .msix w release/.');
-const makeAppx = path.join(process.env.LOCALAPPDATA, 'electron-builder', 'Cache', 'winCodeSign', 'winCodeSign-2.6.0', 'windows-10', 'x64', 'makeappx.exe');
-if (!fs.existsSync(makeAppx)) throw new Error(`Nie znaleziono MakeAppx: ${makeAppx}`);
+const cacheDir = path.join(process.env.LOCALAPPDATA, 'electron-builder', 'Cache', 'winCodeSign');
+const makeAppxRelativePath = fs.readdirSync(cacheDir, { recursive: true })
+  .find(file => file.replaceAll('\\', '/').toLowerCase().endsWith('windows-10/x64/makeappx.exe'));
+if (!makeAppxRelativePath) throw new Error(`Nie znaleziono MakeAppx w: ${cacheDir}`);
+const makeAppx = path.join(cacheDir, makeAppxRelativePath);
 execFileSync(makeAppx, ['unpack', '/o', '/p', path.join(releaseDir, msix), '/d', path.join(releaseDir, '.msix-validation')], { stdio: 'inherit' });
 const manifest = fs.readFileSync(path.join(releaseDir, '.msix-validation', 'AppxManifest.xml'), 'utf8');
 for (const value of [
