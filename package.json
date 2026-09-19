@@ -9,7 +9,9 @@
     "start": "electron .",
     "test": "node --test tests/*.test.cjs",
     "test:ui": "node tests/electron.cjs",
-    "build": "electron-builder --win portable --x64"
+    "build": "electron-builder --win portable --x64",
+    "build:msix": "node scripts/build-msix.cjs",
+    "test:msix": "node scripts/validate-msix.cjs"
   },
   "build": {
     "appId": "pl.marek.ainews",
@@ -28,6 +30,20 @@
     },
     "portable": {
       "artifactName": "AI-News-${version}-Windows.exe"
+    },
+    "appx": {
+      "artifactName": "AI-News-${version}-Windows-${arch}.msix",
+      "identityName": "MarekZettel-zetmar.AI-News",
+      "applicationId": "AINews",
+      "publisher": "CN=15A53D32-C868-48EE-B700-5DBB5449CA1B",
+      "publisherDisplayName": "Marek Zettel - zetmar",
+      "displayName": "AI News",
+      "backgroundColor": "#086D60",
+      "languages": [
+        "pl-PL"
+      ],
+      "minVersion": "10.0.17763.0",
+      "maxVersionTested": "10.0.26100.0"
     }
   },
   "devDependencies": {

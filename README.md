@@ -49,6 +49,17 @@ npm.cmd test
 npm.cmd run test:ui
 npm.cmd run build
 ```
+
+## Microsoft Store
+
+W katalogu `store-identity.example.json` znajduje się wzór danych wymaganych po zarezerwowaniu nazwy aplikacji w Partner Center. Skopiuj go do nieśledzonego przez Git pliku `store-identity.json`, wklej dokładne `Identity name` i `Publisher` z Partner Center, a następnie uruchom:
+
+```powershell
+npm.cmd run build:msix
+npm.cmd run test:msix
+```
+
+Wynikiem jest `release/AI-News-<wersja>-Windows-x64.msix`. Do Microsoft Store nie podpisuj go własnym certyfikatem — Partner Center podpisuje pakiet podczas publikacji.
 Test interfejsu korzysta z rzeczywistego API i potrzebuje internetu. Uruchamia ukryte okno z oddzielnym tymczasowym profilem, więc nie zmienia biblioteki użytkownika. Zrzuty i przykładowy PDF trafiają do `test-results/`.
 
 ## Publikacja

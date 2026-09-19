@@ -2,5 +2,7 @@ node_modules/
 release/
 test-results/
 *.tmp
+.store-package.json
+store-identity.json
 source.html
 news-sample.json
