@@ -1,4 +1,5 @@
 node_modules/
+.tools/
 release/
 test-results/
 *.tmp

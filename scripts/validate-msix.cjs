@@ -6,13 +6,10 @@ const root = path.resolve(__dirname, '..');
 const releaseDir = path.join(root, 'release');
 const msix = fs.readdirSync(releaseDir).find(file => file.endsWith('.msix'));
 if (!msix) throw new Error('Nie znaleziono pakietu .msix w release/.');
-const cacheDir = path.join(process.env.LOCALAPPDATA, 'electron-builder', 'Cache', 'winCodeSign');
-const makeAppxRelativePath = fs.readdirSync(cacheDir, { recursive: true })
-  .find(file => file.replaceAll('\\', '/').toLowerCase().endsWith('windows-10/x64/makeappx.exe'));
-if (!makeAppxRelativePath) throw new Error(`Nie znaleziono MakeAppx w: ${cacheDir}`);
-const makeAppx = path.join(cacheDir, makeAppxRelativePath);
-execFileSync(makeAppx, ['unpack', '/o', '/p', path.join(releaseDir, msix), '/d', path.join(releaseDir, '.msix-validation')], { stdio: 'inherit' });
-const manifest = fs.readFileSync(path.join(releaseDir, '.msix-validation', 'AppxManifest.xml'), 'utf8');
+const unpackDir = path.join(releaseDir, '.msix-validation');
+fs.mkdirSync(unpackDir, { recursive: true });
+execFileSync('tar.exe', ['-xf', path.join(releaseDir, msix), '-C', unpackDir], { stdio: 'inherit' });
+const manifest = fs.readFileSync(path.join(unpackDir, 'AppxManifest.xml'), 'utf8');
 for (const value of [
   'Name="MarekZettel-zetmar.AI-News"',
   "Publisher='CN=15A53D32-C868-48EE-B700-5DBB5449CA1B'",
