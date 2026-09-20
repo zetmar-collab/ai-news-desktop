@@ -4,8 +4,9 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const releaseDir = path.join(root, 'release');
-const msix = fs.readdirSync(releaseDir).find(file => file.endsWith('.msix'));
-if (!msix) throw new Error('Nie znaleziono pakietu .msix w release/.');
+const version = require(path.join(root, 'package.json')).version;
+const msix = `AI-News-${version}-Windows-x64.msix`;
+if (!fs.existsSync(path.join(releaseDir, msix))) throw new Error(`Nie znaleziono pakietu w release/: ${msix}`);
 const unpackDir = path.join(releaseDir, '.msix-validation');
 fs.mkdirSync(unpackDir, { recursive: true });
 execFileSync('tar.exe', ['-xf', path.join(releaseDir, msix), '-C', unpackDir], { stdio: 'inherit' });

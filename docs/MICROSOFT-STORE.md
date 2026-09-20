@@ -10,7 +10,7 @@ Wklej je do lokalnego pliku `store-identity.json`, utworzonego z `store-identity
 
 `npm.cmd run build:msix` buduje architekturę x64. Pakiet zawiera pełnotrustową aplikację Electron, lokalne ikony skalowane od 44 do 310 pikseli oraz tylko uprawnienie `runFullTrust`. Aplikacja pobiera wiadomości po HTTPS, ale nie wymaga dostępu do kamery, mikrofonu ani biblioteki użytkownika.
 
-`npm.cmd run test:msix` rozpakowuje gotowy MSIX przy użyciu MakeAppx i sprawdza manifest. W Store przesyłaj plik `.msix` z folderu `release`, bez lokalnego podpisu: Partner Center zastąpi go podpisem Microsoft.
+`npm.cmd run test:msix` rozpakowuje gotowy MSIX i sprawdza manifest. W Store przesyłaj plik `.msix` z folderu `release`, bez lokalnego podpisu: Partner Center zastąpi go podpisem Microsoft.
 
 ## Wersje
 
