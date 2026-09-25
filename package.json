@@ -1,6 +1,6 @@
 {
   "name": "ai-news-desktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Czytnik AI Evolution News dla Windows",
   "main": "src/main.cjs",
   "author": "Marek",
@@ -37,7 +37,7 @@
       "applicationId": "AINews",
       "publisher": "CN=15A53D32-C868-48EE-B700-5DBB5449CA1B",
       "publisherDisplayName": "Marek Zettel - zetmar",
-      "displayName": "AI News",
+      "displayName": "AI-News",
       "backgroundColor": "#086D60",
       "languages": [
         "pl-PL"

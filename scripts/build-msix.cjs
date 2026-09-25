@@ -13,7 +13,7 @@ if (!fs.existsSync(configPath)) {
 }
 
 const identity = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-for (const key of ['identityName', 'publisher', 'publisherDisplayName']) {
+for (const key of ['identityName', 'publisher', 'publisherDisplayName', 'displayName']) {
   if (typeof identity[key] !== 'string' || !identity[key].trim()) {
     throw new Error(`store-identity.json: brakuje pola ${key}`);
   }

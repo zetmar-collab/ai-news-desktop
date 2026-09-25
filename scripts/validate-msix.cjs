@@ -16,7 +16,9 @@ for (const value of [
   "Publisher='CN=15A53D32-C868-48EE-B700-5DBB5449CA1B'",
   'ProcessorArchitecture="x64"',
   'runFullTrust',
-  'DisplayName="AI News"',
+  '<DisplayName>AI-News</DisplayName>',
+  'DisplayName="AI-News"',
+  `Version="${version}.0"`,
   'Language="pl-PL"',
 ]) {
   if (!manifest.includes(value)) throw new Error(`Manifest nie zawiera: ${value}`);
