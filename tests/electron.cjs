@@ -13,6 +13,7 @@ const assert=require('node:assert/strict');const fs=require('node:fs/promises');
  const pdf=await app.evaluate(async({BrowserWindow},html)=>{const w=new BrowserWindow({show:false});try{await w.loadURL('data:text/html;charset=utf-8,'+encodeURIComponent(html));return Array.from(await w.webContents.printToPDF({pageSize:'A4'}));}finally{w.destroy();}},html);await fs.writeFile('test-results/article.pdf',Buffer.from(pdf));assert.ok(pdf.length>1000);
  await app.evaluate(({app})=>{app.on('browser-window-created',(_event,w)=>{w.webContents.print=(options,callback)=>{globalThis.testPrint={silent:options.silent};callback(false,'cancelled');};});});
  await page.getByRole('button',{name:'▤ Drukuj',exact:true}).click();await page.locator('#toast').filter({hasText:'Anulowano drukowanie.'}).waitFor();assert.deepEqual(await app.evaluate(()=>globalThis.testPrint),{silent:false});
+ await page.locator('#toast').waitFor({state:'hidden'});
  await page.locator('#theme').selectOption('dark');await page.screenshot({path:'test-results/dark.png'});
  await page.locator('#theme').selectOption('light');await page.screenshot({path:'test-results/light.png'});
  await page.locator('#search').fill('zzzz-no-results-zzzz');assert.equal(await page.locator('.post').count(),0);await page.locator('#search').fill('');
