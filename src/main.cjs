@@ -25,7 +25,8 @@ app.whenReady().then(async()=>{
   handle('refresh',()=>{
     if(refreshPromise)return refreshPromise;
     refreshPromise=(async()=>{
-      const response=await fetch('https://aievolutionnews.live/api/news',{headers:{Accept:'application/json'},signal:AbortSignal.timeout(20000),redirect:'error'});
+      const url='https://aievolutionnews.live/api/news?refresh='+Date.now();
+      const response=await fetch(url,{headers:{Accept:'application/json','Cache-Control':'no-cache',Pragma:'no-cache'},signal:AbortSignal.timeout(20000),redirect:'error'});
       if(!response.ok)throw Error('Serwis zwrócił błąd HTTP '+response.status);
       const text=await response.text();if(text.length>15000000)throw Error('Zbyt duża odpowiedź serwisu');
       const news=normalize(JSON.parse(text));store.data.news=news;store.data.updated=new Date().toISOString();await store.save();return store.data;

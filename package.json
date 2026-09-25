@@ -1,6 +1,6 @@
 {
   "name": "ai-news-desktop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Czytnik AI Evolution News dla Windows",
   "main": "src/main.cjs",
   "author": "Marek",

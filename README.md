@@ -6,7 +6,7 @@
 Gotowa aplikacja: `release/AI-News-1.0.0-Windows.exe`. Uruchom dwuklikiem, bez instalowania Node.js. Przy pierwszym uruchomieniu wymagane jest połączenie z internetem. Wersja przenośna zapisuje bibliotekę w profilu Windows, nie obok EXE.
 
 ## Funkcje
-- Pobieranie pełnych postów z https://aievolutionnews.live/api/news przy uruchomieniu i przyciskiem Odśwież.
+- Pobieranie pełnych postów z https://aievolutionnews.live/api/news przy uruchomieniu, co 5 minut, po powrocie do okna i przyciskiem Odśwież.
 - Kategorie, wyszukiwanie w treści, tytule, źródle i tagach (bez rozróżniania polskich znaków).
 - Sortowanie datą w obu kierunkach oraz tytułem A–Z / Z–A.
 - Wszystkie wiadomości, Na czasie i Ulubione. Gwiazdka zapisuje pełny post lokalnie.

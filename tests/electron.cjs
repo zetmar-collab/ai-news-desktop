@@ -25,6 +25,13 @@ const assert=require('node:assert/strict');const fs=require('node:fs/promises');
  await restored.locator('.star').click();await restored.locator('#fav-count').filter({hasText:'0'}).waitFor();
  await restored.locator('#refresh:not([disabled])').waitFor();await app.evaluate(()=>{globalThis.fetch=async()=>{throw Error('test offline');};});await restored.locator('#refresh').click();await restored.locator('#connection.error').waitFor();assert.ok(Number(await restored.locator('#all-count').innerText())>0);
  await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows()[0].setSize(960,640));await restored.screenshot({path:'test-results/compact.png'});assert.ok(await restored.locator('#theme').isVisible());
- assert.deepEqual(errors,[]);console.log('PASS: live API, reader, favorites, persistence, clipboard, themes, search, sorting, PDF rendering; no renderer errors.');
+ await restored.locator('#refresh:not([disabled])').waitFor();
+ await app.evaluate(()=>{globalThis.fetch=async(url,options)=>{globalThis.testRequest={url,headers:options.headers};return new Response(JSON.stringify({news:[{id:999999,title:'Nowa wiadomość',date:'2026-09-25',full:'Nowa treść',category:'ai',source:'Test'}]}),{status:200});};});
+ await restored.evaluate(()=>{const future=Date.now()+6*60*1000;Date.now=()=>future;window.dispatchEvent(new Event('focus'));});
+ await restored.locator('#all-count').filter({hasText:'1'}).waitFor();
+ await restored.locator('[data-view="all"]').click();
+ assert.equal(await restored.locator('.post h2').innerText(),'Nowa wiadomość');
+ assert.match((await app.evaluate(()=>globalThis.testRequest)).url,/\/api\/news\?refresh=\d+/);
+ assert.deepEqual(errors,[]);console.log('PASS: live API, automatic refresh, reader, favorites, persistence, clipboard, themes, search, sorting, PDF rendering; no renderer errors.');
  }finally{if(app)await app.close();await fs.rm(dir,{recursive:true,force:true});}
 })().catch(e=>{console.error(e);process.exitCode=1;});
