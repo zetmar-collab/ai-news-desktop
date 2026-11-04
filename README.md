@@ -1,6 +1,8 @@
 # AI News — czytnik wiadomości dla Windows
 ![Logo](https://github.com/zetmar-collab/ai-news-desktop/blob/main/docs/images/ChatGPT%20Image%2015%20wrz%202026%2C%2004_12_04.png)
 
+**[Pobierz z Microsoft Store](https://apps.microsoft.com/detail/9PDXC20N59XF)** — instalacja jednym kliknięciem i automatyczne aktualizacje (w Store aplikacja nazywa się „AI-News").
+
 **[Pobierz najnowsze wydanie dla Windows](https://github.com/zetmar-collab/ai-news-desktop/releases/latest)**
 
 Gotowa aplikacja: `release/AI-News-1.0.0-Windows.exe`. Uruchom dwuklikiem, bez instalowania Node.js. Przy pierwszym uruchomieniu wymagane jest połączenie z internetem. Wersja przenośna zapisuje bibliotekę w profilu Windows, nie obok EXE.
